@@ -16,6 +16,7 @@ struct ContentView: View {
                                GridItem(.flexible())]
     // [[1, 2, 3, 4, 5, 6],  ... 36]
     @State private var lastSlot: Slot? = nil
+    private let lastRow: [Int] = [30, 31, 32, 33, 34, 35]
     @State private var moves: [Move?] = Array(repeating: nil, count: 36)
     @State private var turn: Bool = true
     @State private var slots: Array<Slot> = [Slot(boardIndex: 0, filled:                                            nil, columnIndex: 0),
@@ -64,39 +65,31 @@ struct ContentView: View {
                 ForEach(0..<36) { i in
                     Circle()
                         .frame(width: 50)
-                        .foregroundColor(moves[i]?.indicator)
+                        .foregroundColor(slots[i].filled?.indicator)
                         .overlay(content: {
                             Text("\(i)")
                                 .foregroundColor(.white)
                         })
                         .onTapGesture {
                             let tappedCol = slots[i].columnIndex
-                            
                             for slot in slots {
-    
                                 if slot.columnIndex == tappedCol {
-                                    if slot.filled == nil {
+                                    if slot.filled == nil && !lastRow.contains(slot.boardIndex) {
                                         lastSlot = slot
                                     }
                                     else {
-                                        if lastSlot != nil {
+                                        if lastSlot != nil && lastRow.contains(slot.boardIndex) {
                                             lastSlot?.filled = Move(player: determineTurn(), boardIndex: i)
+                                            if let newSlot = lastSlot {
+                                                slots[newSlot.boardIndex] = newSlot
+                                            }
+                                            break
                                         }
                                     }
-                                    
                                 }
                             }
                             lastSlot = nil
-                            //slots[i] = Move(player: determineTurn(), boardIndex: i)
-                            for s in 0..<slots.count {
-                                if slots[s].boardIndex == i {
-                                    if slots[s].filled != nil {
-                                        slots[s].filled = moves[i]
-                                    }
-                                }
-                            }
                             turn.toggle()
-                            
                         }
                 }
             }
