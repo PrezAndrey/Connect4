@@ -78,12 +78,19 @@ struct ContentView: View {
                                         lastSlot = slot
                                     }
                                     else {
-                                        if lastSlot != nil && lastRow.contains(slot.boardIndex) {
+                                        if lastRow.contains(slot.boardIndex) && slot.filled == nil {
+                                            lastSlot = slot
                                             lastSlot?.filled = Move(player: determineTurn(), boardIndex: i)
                                             if let newSlot = lastSlot {
                                                 slots[newSlot.boardIndex] = newSlot
                                             }
                                             break
+                                        }
+                                        else {
+                                            lastSlot?.filled = Move(player: determineTurn(), boardIndex: i)
+                                            if let newSlot = lastSlot {
+                                                slots[newSlot.boardIndex] = newSlot
+                                            }
                                         }
                                     }
                                 }
