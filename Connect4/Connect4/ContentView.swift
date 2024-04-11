@@ -19,7 +19,8 @@ struct ContentView: View {
     private let lastRow: [Int] = [30, 31, 32, 33, 34, 35]
     @State private var moves: [Move?] = Array(repeating: nil, count: 36)
     @State private var turn: Bool = true
-    @State private var slots: Array<Slot> = [Slot(boardIndex: 0, filled:                                            nil, columnIndex: 0),
+    @State private var slots: Array<Slot> = [
+                                             Slot(boardIndex: 0, filled: nil, columnIndex: 0),
                                              Slot(boardIndex: 1, filled: nil, columnIndex: 1),
                                              Slot(boardIndex: 2, filled: nil, columnIndex: 2),
                                              Slot(boardIndex: 3, filled: nil, columnIndex: 3),
@@ -55,12 +56,21 @@ struct ContentView: View {
                                              Slot(boardIndex: 33, filled: nil, columnIndex: 3),
                                              Slot(boardIndex: 34, filled: nil, columnIndex: 4),
                                              Slot(boardIndex: 35, filled: nil, columnIndex: 5),
-    
+                                             
     ]
     
     var body: some View {
         
         VStack {
+            Circle()
+                .frame(width: 150)
+                .padding(.vertical, 50)
+                .foregroundColor(determineColor())
+                .overlay {
+                    Text("Turn")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                }
             LazyVGrid(columns: columns, spacing: 10) {
                 ForEach(0..<36) { i in
                     Circle()
@@ -72,7 +82,9 @@ struct ContentView: View {
                         })
                         .onTapGesture {
                             let tappedCol = slots[i].columnIndex
+                            SoundManager.instance.playSound()
                             for slot in slots {
+                                
                                 if slot.columnIndex == tappedCol {
                                     if slot.filled == nil && !lastRow.contains(slot.boardIndex) {
                                         lastSlot = slot
@@ -111,6 +123,13 @@ struct ContentView: View {
         }
     }
     
+    func determineColor() -> Color {
+        if turn {
+            return Color.red
+        }
+        return Color.yellow
+    }
+    
     func createSlots() -> Array<Slot> {
         var s: [Slot] = []
         for col in 0..<6 {
@@ -120,6 +139,11 @@ struct ContentView: View {
         }
         print(s)
         return s
+    }
+    
+    func checkWinCmbination(player: Player) -> Bool {
+        
+        return false
     }
     
 }
