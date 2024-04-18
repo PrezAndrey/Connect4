@@ -14,7 +14,8 @@ struct ContentView: View {
                                GridItem(.flexible()),
                                GridItem(.flexible()),
                                GridItem(.flexible())]
-    // [[1, 2, 3, 4, 5, 6],  ... 36]
+    private let rowsWinCombinations: [Array<Int>] = [[0, 1, 2, 3], [1, 2, 3, 4], [2, 3, 4, 5], [6, 7, 8, 9], [7, 8, 9, 10], [8, 9, 10, 11], [12, 13, 14, 15], [13, 14, 15, 16], [14, 15, 16, 17], [18, 19, 20, 21], [19, 20, 21, 22], [20, 21, 22, 23], [24, 25, 26, 27], [25, 26, 27, 28], [26, 27, 28, 29], [30, 31, 32, 33], [31, 32, 33, 34], [32, 33, 34, 35]]
+    private let columnsWinCombinations: [Array<Int>] = [[0, 6, 12, 18], [6, 12, 18, 24], [12, 18, 24, 30], [1, 7, 13, 19], [7, 13, 19, 25], [13, 19, 25, 31], [2, 8, 14, 20], [8, 14, 20, 26], [14, 20, 26, 32], [3, 9, 15, 21], [9, 15, 21, 27], [15, 21, 27, 33], [4, 10, 16, 22], [10, 16, 22, 28], [16, 22, 28, 34], [5, 11, 17, 23], [11, 17, 23, 29], [17, 23, 29, 35]]
     @State private var lastSlot: Slot? = nil
     private let lastRow: [Int] = [30, 31, 32, 33, 34, 35]
     @State private var moves: [Move?] = Array(repeating: nil, count: 36)
@@ -107,6 +108,12 @@ struct ContentView: View {
                                     }
                                 }
                             }
+                            if checkRowWinCombinations(for: .red) {
+                                print("________RED WINS________")
+                            }
+                            if checkRowWinCombinations(for: .yellow) {
+                                print("________YELLOW WINS________")
+                            }
                             lastSlot = nil
                             turn.toggle()
                         }
@@ -143,6 +150,26 @@ struct ContentView: View {
     
     func checkWinCmbination(player: Player) -> Bool {
         
+        return false
+    }
+    
+    func checkRowWinCombinations(for player: Player) -> Bool {
+        var filledRows = 0
+        let reloadSlots = [0, 6, 12, 18, 24, 30]
+        for slot in slots {
+            if reloadSlots.contains(slot.boardIndex) {
+                filledRows = 0
+            }
+            if slot.filled != nil && slot.filled?.player == player {
+                filledRows += 1
+                if filledRows == 4 {
+                    return true
+                }
+            }
+            else {
+                filledRows = 0
+            }
+        }
         return false
     }
     
