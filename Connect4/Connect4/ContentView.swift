@@ -108,10 +108,17 @@ struct ContentView: View {
                                     }
                                 }
                             }
+                            
                             if checkRowWinCombinations(for: .red) {
                                 print("________RED WINS________")
                             }
                             if checkRowWinCombinations(for: .yellow) {
+                                print("________YELLOW WINS________")
+                            }
+                            if checkColWinCombinations(for: .red) {
+                                print("________RED WINS________")
+                            }
+                            if checkColWinCombinations(for: .yellow) {
                                 print("________YELLOW WINS________")
                             }
                             lastSlot = nil
@@ -152,7 +159,32 @@ struct ContentView: View {
         
         return false
     }
-    
+    func checkColWinCombinations(for player: Player) -> Bool {
+        var filledRows = 0
+        let reloadSlots = [0, 1, 2, 3, 4, 5]
+        for col in 0..<6 {
+            for slot in slots {
+                if slot.columnIndex != col {
+                    continue
+                }
+                if reloadSlots.contains(slot.boardIndex) {
+                    filledRows = 0
+                }
+                if slot.filled != nil && slot.filled?.player == player {
+                    filledRows += 1
+                    if filledRows == 4 {
+                        return true
+                    }
+                }
+                else {
+                    filledRows = 0
+                }
+                
+            }
+        }
+        return false
+
+    }
     func checkRowWinCombinations(for player: Player) -> Bool {
         var filledRows = 0
         let reloadSlots = [0, 6, 12, 18, 24, 30]
