@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		551019BB2B99053C0018A904 /* Connect4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551019BA2B99053C0018A904 /* Connect4App.swift */; };
-		551019BD2B99053C0018A904 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551019BC2B99053C0018A904 /* ContentView.swift */; };
+		551019BD2B99053C0018A904 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551019BC2B99053C0018A904 /* GameView.swift */; };
 		551019BF2B99053E0018A904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 551019BE2B99053E0018A904 /* Assets.xcassets */; };
 		551019C22B99053E0018A904 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 551019C12B99053E0018A904 /* Preview Assets.xcassets */; };
+		55500A412BED580700293C93 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55500A402BED580700293C93 /* GameViewModel.swift */; };
 		55572C2D2BB5FE8A009DDF24 /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55572C2C2BB5FE8A009DDF24 /* SoundService.swift */; };
 		55BE73F22BBF33F3007FAA0A /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55BE73F12BBF33F2007FAA0A /* sound.mp3 */; };
 		55DDC3682BE41B9300AD2A15 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDC3672BE41B9300AD2A15 /* Alert.swift */; };
@@ -19,9 +20,10 @@
 /* Begin PBXFileReference section */
 		551019B72B99053C0018A904 /* Connect4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Connect4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		551019BA2B99053C0018A904 /* Connect4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connect4App.swift; sourceTree = "<group>"; };
-		551019BC2B99053C0018A904 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		551019BC2B99053C0018A904 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		551019BE2B99053E0018A904 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		551019C12B99053E0018A904 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		55500A402BED580700293C93 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		55572C2C2BB5FE8A009DDF24 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		55BE73F12BBF33F2007FAA0A /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
 		55DDC3672BE41B9300AD2A15 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -57,10 +59,11 @@
 		551019B92B99053C0018A904 /* Connect4 */ = {
 			isa = PBXGroup;
 			children = (
+				55500A402BED580700293C93 /* GameViewModel.swift */,
 				55DDC3672BE41B9300AD2A15 /* Alert.swift */,
 				55572C2C2BB5FE8A009DDF24 /* SoundService.swift */,
 				551019BA2B99053C0018A904 /* Connect4App.swift */,
-				551019BC2B99053C0018A904 /* ContentView.swift */,
+				551019BC2B99053C0018A904 /* GameView.swift */,
 				551019BE2B99053E0018A904 /* Assets.xcassets */,
 				551019C02B99053E0018A904 /* Preview Content */,
 				55BE73F12BBF33F2007FAA0A /* sound.mp3 */,
@@ -147,9 +150,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				551019BD2B99053C0018A904 /* ContentView.swift in Sources */,
+				551019BD2B99053C0018A904 /* GameView.swift in Sources */,
 				55572C2D2BB5FE8A009DDF24 /* SoundService.swift in Sources */,
 				55DDC3682BE41B9300AD2A15 /* Alert.swift in Sources */,
+				55500A412BED580700293C93 /* GameViewModel.swift in Sources */,
 				551019BB2B99053C0018A904 /* Connect4App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
